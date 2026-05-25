@@ -14,8 +14,8 @@ const AFFILIATE = {
     positionId: '',                // 京东联盟后台 → 推广管理 → 推广位管理 获取
   },
   tmall: {
-    enabled: true,
-    pid: '',                       // 阿里妈妈后台 → 推广位 获取三段式 PID (mm_xxx_xxx_xxx)
+    enabled: false,                  // 已关闭，只用京东
+    pid: '',
   },
   dji: {
     enabled: true,
@@ -72,7 +72,7 @@ function hasAffiliateLink(drone, channel) {
   const ids = PRODUCT_IDS[drone.id] || {};
   switch (channel) {
     case 'jd': return !!ids.jdSku;
-    case 'tmall': return !!ids.tmallId;
+    case 'tmall': return false; // 仅京东
     case 'official': return drone.brand === 'DJI';
     default: return false;
   }

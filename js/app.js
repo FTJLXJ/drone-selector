@@ -90,7 +90,6 @@ function openDetail(droneId) {
           <div class="detail-buy-btns">
             ${hasAffiliateLink(drone, 'jd') ? `<a class="btn btn-buy" href="${getAffiliateLink(drone, 'jd')}" target="_blank" rel="noopener">🛒 ${t('detailBuyJD')}</a>` : ''}
             ${hasAffiliateLink(drone, 'official') ? `<a class="btn btn-primary" href="${getAffiliateLink(drone, 'official')}" target="_blank" rel="noopener">🏪 ${t('detailBuyOfficial')}</a>` : ''}
-            ${hasAffiliateLink(drone, 'tmall') ? `<a class="btn" href="${getAffiliateLink(drone, 'tmall')}" target="_blank" rel="noopener">🛍️ ${t('detailBuyTmall')}</a>` : ''}
           </div>
         </div>
       </div>

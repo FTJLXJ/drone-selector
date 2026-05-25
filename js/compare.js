@@ -112,7 +112,6 @@ function renderCompare() {
           let links = '';
           if (hasAffiliateLink(d, 'official')) links += `<a class="btn btn-primary btn-sm" href="${getAffiliateLink(d, 'official')}" target="_blank" rel="noopener">🏪 ${name} ${t('detailBuyOfficial')}</a>`;
           if (hasAffiliateLink(d, 'jd')) links += `<a class="btn btn-buy btn-sm" href="${getAffiliateLink(d, 'jd')}" target="_blank" rel="noopener">🛒 ${name} ${t('detailBuyJD')}</a>`;
-          if (hasAffiliateLink(d, 'tmall')) links += `<a class="btn btn-sm" href="${getAffiliateLink(d, 'tmall')}" target="_blank" rel="noopener">🛍️ ${name} ${t('detailBuyTmall')}</a>`;
           return links;
         }).join('')}
       </div>
