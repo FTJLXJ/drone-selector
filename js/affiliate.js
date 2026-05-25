@@ -10,12 +10,12 @@
 const AFFILIATE = {
   jd: {
     enabled: true,
-    unionId: 'YOUR_JD_UNION_ID',
-    positionId: 'YOUR_POSITION_ID',
+    unionId: '2038189278',
+    positionId: '',                // 京东联盟后台 → 推广管理 → 推广位管理 获取
   },
   tmall: {
     enabled: true,
-    pid: 'mm_YOUR_PID_HERE',
+    pid: '',                       // 阿里妈妈后台 → 推广位 获取三段式 PID (mm_xxx_xxx_xxx)
   },
   dji: {
     enabled: true,
@@ -84,13 +84,19 @@ function getAffiliateLink(drone, channel) {
   switch (channel) {
     case 'jd':
       if (ids.jdSku) {
-        return `https://item.jd.com/${ids.jdSku}.html`;
+        const itemUrl = `https://item.jd.com/${ids.jdSku}.html`;
+        // 京东联盟短链格式：带 unionId 自动跟踪
+        return `https://union-click.jd.com/jdc?unionId=${AFFILIATE.jd.unionId}&to=${encodeURIComponent(itemUrl)}`;
       }
       return `https://search.jd.com/Search?keyword=${encodeURIComponent(drone.brand + ' ' + drone.name.zh)}`;
 
     case 'tmall':
       if (ids.tmallId) {
-        return `https://detail.tmall.com/item.htm?id=${ids.tmallId}`;
+        let url = `https://detail.tmall.com/item.htm?id=${ids.tmallId}`;
+        if (AFFILIATE.tmall.pid) {
+          url += `&ali_trackid=2:${AFFILIATE.tmall.pid}`;
+        }
+        return url;
       }
       return `https://www.tmall.com/mall-search.html?q=${encodeURIComponent(drone.name.zh)}`;
 
