@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+download_images.py
+download-images.bat
+.DS_Store
