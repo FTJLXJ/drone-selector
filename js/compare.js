@@ -55,7 +55,7 @@ function renderCompare() {
       <div style="font-weight:700;">${name}</div>
       <div style="color:var(--red);">${formatPrice(d)}</div>
       <div style="margin-top:6px;">
-        <button class="btn btn-sm btn-buy" onclick="window.open('${d.buyLinks.jd || d.buyLinks.official || '#'}','_blank')" style="font-size:10px;">🛒 ${t('recBuy')}</button>
+        <button class="btn btn-sm btn-buy" onclick="window.open('${getAffiliateLink(d, 'jd') || getAffiliateLink(d, 'official') || '#'}','_blank')" style="font-size:10px;">🛒 ${t('recBuy')}</button>
       </div>
     </th>`;
   });
@@ -110,9 +110,9 @@ function renderCompare() {
         ${compareDrones.map(d => {
           const name = d.name[currentLang] || d.name.zh;
           let links = '';
-          if (d.buyLinks.official) links += `<a class="btn btn-primary btn-sm" href="${d.buyLinks.official}" target="_blank" rel="noopener">🏪 ${name} ${t('detailBuyOfficial')}</a>`;
-          if (d.buyLinks.jd) links += `<a class="btn btn-buy btn-sm" href="${d.buyLinks.jd}" target="_blank" rel="noopener">🛒 ${name} ${t('detailBuyJD')}</a>`;
-          if (d.buyLinks.tmall) links += `<a class="btn btn-sm" href="${d.buyLinks.tmall}" target="_blank" rel="noopener">🛍️ ${name} ${t('detailBuyTmall')}</a>`;
+          if (hasAffiliateLink(d, 'official')) links += `<a class="btn btn-primary btn-sm" href="${getAffiliateLink(d, 'official')}" target="_blank" rel="noopener">🏪 ${name} ${t('detailBuyOfficial')}</a>`;
+          if (hasAffiliateLink(d, 'jd')) links += `<a class="btn btn-buy btn-sm" href="${getAffiliateLink(d, 'jd')}" target="_blank" rel="noopener">🛒 ${name} ${t('detailBuyJD')}</a>`;
+          if (hasAffiliateLink(d, 'tmall')) links += `<a class="btn btn-sm" href="${getAffiliateLink(d, 'tmall')}" target="_blank" rel="noopener">🛍️ ${name} ${t('detailBuyTmall')}</a>`;
           return links;
         }).join('')}
       </div>

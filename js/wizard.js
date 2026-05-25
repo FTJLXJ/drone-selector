@@ -350,8 +350,8 @@ function getAnswersSummary() {
 
 function getBestBuyLink(drone) {
   const links = [];
-  if (drone.buyLinks.jd) links.push(`<a class="btn btn-sm btn-buy" href="${drone.buyLinks.jd}" target="_blank" rel="noopener" onclick="event.stopPropagation()">🛒 ${t('recBuy')}</a>`);
-  else if (drone.buyLinks.official) links.push(`<a class="btn btn-sm btn-primary" href="${drone.buyLinks.official}" target="_blank" rel="noopener" onclick="event.stopPropagation()">🏪 ${t('recBuy')}</a>`);
+  if (hasAffiliateLink(drone, 'jd')) links.push(`<a class="btn btn-sm btn-buy" href="${getAffiliateLink(drone, 'jd')}" target="_blank" rel="noopener" onclick="event.stopPropagation()">🛒 ${t('recBuy')}</a>`);
+  else if (hasAffiliateLink(drone, 'official')) links.push(`<a class="btn btn-sm btn-primary" href="${getAffiliateLink(drone, 'official')}" target="_blank" rel="noopener" onclick="event.stopPropagation()">🏪 ${t('recBuy')}</a>`);
   return links.join('');
 }
 

@@ -88,9 +88,9 @@ function openDetail(droneId) {
             <strong>${t('detailScenario')}:</strong> ${(drone.scenarios || []).map(s => t('scenario' + s.charAt(0).toUpperCase() + s.slice(1))).join(' · ')}
           </p>
           <div class="detail-buy-btns">
-            ${drone.buyLinks.jd ? `<a class="btn btn-buy" href="${drone.buyLinks.jd}" target="_blank" rel="noopener">🛒 ${t('detailBuyJD')}</a>` : ''}
-            ${drone.buyLinks.official ? `<a class="btn btn-primary" href="${drone.buyLinks.official}" target="_blank" rel="noopener">🏪 ${t('detailBuyOfficial')}</a>` : ''}
-            ${drone.buyLinks.tmall ? `<a class="btn" href="${drone.buyLinks.tmall}" target="_blank" rel="noopener">🛍️ ${t('detailBuyTmall')}</a>` : ''}
+            ${hasAffiliateLink(drone, 'jd') ? `<a class="btn btn-buy" href="${getAffiliateLink(drone, 'jd')}" target="_blank" rel="noopener">🛒 ${t('detailBuyJD')}</a>` : ''}
+            ${hasAffiliateLink(drone, 'official') ? `<a class="btn btn-primary" href="${getAffiliateLink(drone, 'official')}" target="_blank" rel="noopener">🏪 ${t('detailBuyOfficial')}</a>` : ''}
+            ${hasAffiliateLink(drone, 'tmall') ? `<a class="btn" href="${getAffiliateLink(drone, 'tmall')}" target="_blank" rel="noopener">🛍️ ${t('detailBuyTmall')}</a>` : ''}
           </div>
         </div>
       </div>
@@ -165,7 +165,7 @@ function renderDroneCard(drone, showCompare = true) {
         </div>
         <div class="card-actions">
           <button class="btn btn-sm btn-primary" onclick="event.stopPropagation();openDetail('${drone.id}')">${t('recDetail')}</button>
-          ${drone.buyLinks.jd || drone.buyLinks.official ? `<a class="btn btn-sm btn-buy" href="${drone.buyLinks.jd || drone.buyLinks.official}" target="_blank" rel="noopener" onclick="event.stopPropagation();">🛒 ${t('recBuy')}</a>` : ''}
+          ${hasAffiliateLink(drone, 'jd') || hasAffiliateLink(drone, 'official') ? `<a class="btn btn-sm btn-buy" href="${getAffiliateLink(drone, 'jd') || getAffiliateLink(drone, 'official')}" target="_blank" rel="noopener" onclick="event.stopPropagation();">🛒 ${t('recBuy')}</a>` : ''}
         </div>
       </div>
     </div>`;
